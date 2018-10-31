@@ -1,0 +1,32 @@
+<div>
+  <div class="dropdown" dropdown>
+    <button class="btn btn-primary" dropdown-open>Select Country</button>
+    <ul class="dropdown-menu">
+      <li *ngFor="let country of countryList">
+        <a href="javascript:void(0);" (click)="pick(country)">{{country.name}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <table class="table" *ngIf="countryDetails.length > 0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Capital</th>
+          <th>Population </th>
+          <th>Currency Code</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of countryDetails">
+        <tr>
+          <td>{{item.name}}</td>
+          <td>{{item.capital}}</td>
+          <td>{{item.population}}</td>
+          <td>{{item.currencies[0].code}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

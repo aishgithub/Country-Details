@@ -21,7 +21,9 @@
       <div *ngIf="auth.password.invalid && (auth.password.dirty || auth.password.touched)" class="alert alert-danger">
       </div>
     </div>
-
+    <div *ngIf="errorMessage">
+      *{{errorMessage}}
+    </div>
     <button type="submit" class="btn btn-success">Submit</button>
 
   </form>

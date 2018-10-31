@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     userName: '',
     password: ''
   }
+  private errorMessage = '';
   ngOnInit() {
     this.loginForm = new FormGroup({
       'userName': new FormControl(this.auth.userName, [
@@ -32,7 +33,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.router.navigate(['/dashboard']);
+    this.errorMessage = '';
+    if (this.auth.userName === 'admin' && this.auth.password === 'admin') {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.errorMessage = 'User does not exist';
+    }
   }
 
   validateUserName(): void {

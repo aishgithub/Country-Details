@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Credential } from './../credential';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-// import { forbiddenNameValidator } from './../validate-username.directive';
 import { Router, RouterModule } from '@angular/router';
-import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,14 +11,16 @@ import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn } from '@angular
 export class LoginComponent implements OnInit {
   private loginForm;
   private validateUserNameFlag = false;
+  private auth: Credential;
+  private errorMessage = '';
+
   constructor(private router: Router) { }
 
-  private auth = {
-    userName: '',
-    password: ''
-  }
-  private errorMessage = '';
   ngOnInit() {
+    this.auth = {
+      userName: '',
+      password: ''
+    };
     this.loginForm = new FormGroup({
       'userName': new FormControl(this.auth.userName, [
         Validators.required,

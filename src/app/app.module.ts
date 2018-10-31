@@ -4,10 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { AppService } from './app.service'
 import { AppRoutingModule } from './routing/app.routing.module'
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import { BsDropdownModule } from 'ngx-bootstrap';
 import { DropdownModule } from "ngx-dropdown";
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { DropdownModule } from "ngx-dropdown";
     DropdownModule
     // NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

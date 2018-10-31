@@ -1,35 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-
+import { Country } from './../country';
+import { AppService } from './../app.service'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [AppService]
 })
 export class DashboardComponent implements OnInit {
-  private country: any;
-  private countryList: Array<any> = [];
-  private countryDetails: Array<any> = [];
+  private country: Country;
+  private countryList: Array<Country> = [];
+  private countryDetails: Array<Country> = [];
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private appService: AppService) {
+
   }
 
   ngOnInit() {
-    let that = this;
-    this.http.get('https://restcountries.eu/rest/v2/all').subscribe((data: any) => {
-      that.countryList = JSON.parse(data['_body']);
+    this.appService.getCountryList().then((result: any) => {
+      this.countryList = result;
     });
+    ;
   }
 
-  pick(subject: any): void {
+  pick(subject: Country): void {
     this.country = subject;
     let that = this;
-    // Here we already have required data of country to display. We can sort the countryList to get details of selected country
-    // that.countryDetails = that.countryList.filter(function (rec: any) {
-    //   return rec.name === that.country.name
-    // });
-    this.http.get(' https://restcountries.eu/rest/v2/name/' + this.country['name']).subscribe((data: any) => {
-      that.countryDetails = JSON.parse(data['_body']);
+    this.countryDetails = this.countryList.filter(function (rec: Country) {
+      return rec.name === that.country.name;
     });
   }
 }

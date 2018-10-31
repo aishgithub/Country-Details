@@ -13,14 +13,17 @@ export class DashboardComponent implements OnInit {
   private countryList: Array<Country> = [];
   private countryDetails: Array<Country> = [];
 
-  constructor(private http: Http, private appService: AppService) {
+  constructor(private appService: AppService) {
 
   }
 
   ngOnInit() {
     this.appService.getCountryList().then((result: any) => {
       this.countryList = result;
-    });
+    }).catch((err) => {
+      console.log(err);
+      return err;
+    });;
     ;
   }
 

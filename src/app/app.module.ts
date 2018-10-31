@@ -1,14 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
+import { HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service'
 import { AppRoutingModule } from './routing/app.routing.module'
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DropdownModule } from "ngx-dropdown";
+import { HttpService } from 'app/generic-http/http-service';
+import { httpFactory } from './generic-http/http-factory';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,11 @@ import { DropdownModule } from "ngx-dropdown";
     DropdownModule
     // NgbModule.forRoot()
   ],
-  providers: [AppService],
+  providers: [{
+    provide: HttpService,
+    useFactory: httpFactory,
+    deps: [XHRBackend, RequestOptions],
+  }, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

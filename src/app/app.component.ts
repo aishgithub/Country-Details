@@ -10,17 +10,6 @@ import { Router, RouterModule } from '@angular/router';
   providers: [RouterModule]
 })
 export class AppComponent implements OnInit {
-  private auth = {
-    userName: '',
-    password: ''
-  }
-  // loginForm = new FormGroup({
-  //   userName: new FormControl('',
-  //     Validators.required,
-  //     forbiddenNameValidator(/bob/i)),
-
-  //   password: new FormControl(''),
-  // });
   constructor(private router: Router) {
 
   }

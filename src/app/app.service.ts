@@ -8,12 +8,7 @@ export class AppService {
 
   constructor(private http: HttpService) { }
   getCountryList() {
-
-    return new Promise((resolve, reject) => {
-      const url = 'https://restcountries.eu/rest/v2/all';
-      this.http.get(url, {}).map((res) => res.json()).subscribe(data => {
-        resolve(data);
-      });
-    });
+    const url = 'https://restcountries.eu/rest/v2/all';
+    return this.http.get(url, {}).map((res) => res.json());
   }
 }

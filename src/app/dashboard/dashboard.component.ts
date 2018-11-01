@@ -18,13 +18,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appService.getCountryList().then((result: any) => {
-      this.countryList = result;
-    }).catch((err) => {
-      console.log(err);
-      return err;
-    });;
-    ;
+    let data = this.appService.getCountryList().subscribe(data => {
+      this.countryList = data;
+    });
   }
 
   pick(subject: Country): void {

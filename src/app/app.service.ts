@@ -11,4 +11,9 @@ export class AppService {
     const url = 'https://restcountries.eu/rest/v2/all';
     return this.http.get(url, {}).map((res) => res.json());
   }
+
+  getCityWeather(city) {
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=7c2c187e5c0f4fa260bddd8edea19353';
+    return this.http.get(url, {}).map((res) => res.json());
+  }
 }

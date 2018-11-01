@@ -1,5 +1,5 @@
 <div>
-  <div class="dropdown" dropdown>
+  <div class="dropdown" dropdown *ngIf="countryList.length > 0">
     <button class="btn btn-primary" dropdown-open>Select Country</button>
     <ul class="dropdown-menu">
       <li *ngFor="let country of countryList">
@@ -8,8 +8,9 @@
     </ul>
   </div>
 
-  <div>
-    <table class="table" *ngIf="countryDetails.length > 0">
+  <div *ngIf="countryDetails.length > 0">
+    <h4 style="font-weight:bold">Country Info:</h4>
+    <table class="table">
       <thead>
         <tr>
           <th>Name</th>
@@ -28,5 +29,30 @@
 
       </tbody>
     </table>
+
   </div>
+
+  <div>
+    <h4 style="font-weight:bold">Capital Weather Info: {{updatedRecord}}</h4>
+    <table class="table" *ngIf="alive">
+      <thead>
+        <tr>
+          <th>Capital</th>
+          <th>Wind</th>
+          <th>Temp</th>
+          <th>Humidity </th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of countryDetails">
+        <tr>
+          <td>{{country.capital}}</td>
+          <td>{{weather.wind.speed}}</td>
+          <td>{{weather.temp}}</td>
+          <td>{{weather.humidity}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="!alive">Wheater not found</p>
+  </div>
+
 </div>
